@@ -39,12 +39,12 @@ prepare(){
    find . -type f -name 'sample*' -exec sed -i 's/-P$PRINTER/-p$PRINTER/' {} \;
    # convert images (and make pics/ build work)
    cd pics/ && \
-     magick convert -flop BabyTuX.eps BabyTuX.eps
+     magick BabyTuX.eps -flop BabyTuX.eps
      for i in BabyTuX_color.eps BabyTuX.eps Debian_color.eps Debian.eps \
        Gentoo.eps Gentoo_color.eps ; do \
-       magick convert $i $(basename $i .eps).png; \
+       magick $i $(basename $i .eps).png; \
      done && \
-     magick convert penguin.eps penguin.jpg
+     magick penguin.eps penguin.jpg
 }
 
 build() {
