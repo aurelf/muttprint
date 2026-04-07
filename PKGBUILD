@@ -17,12 +17,14 @@ makedepends=('imagemagick')
 url="http://muttprint.sf.net"
 backup=('etc/Muttprintrc')
 source=(http://downloads.sf.net/$pkgname/$pkgname-$_mainver.tar.gz
-        'muttprint_0.73-4.diff' 'regex.patch' 'two_edge.patch' 'filespeck.patch')
+        'muttprint_0.73-4.diff' 'regex.patch' 'two_edge.patch' 'filespeck.patch'
+        'bool.patch')
 md5sums=('39b76058b838e3078df93236eda2c316'
          '4a97e45b6df024272a8683403c9b73e6'
          '3e338bb7dbe33401e59dc53ca830508d'
          '11846b8ebfba2b784ae64fb32abb7cfd'
-         'cafe5e0ef343f18b0a4eaf4c91325bbb')
+         'cafe5e0ef343f18b0a4eaf4c91325bbb'
+         '2343ca01f1b5f25a11aa14a4b231ba0c')
 
 prepare(){
    cd $pkgname-$_mainver
@@ -30,6 +32,7 @@ prepare(){
    patch -p1 < ../regex.patch
    patch -p1 < ../two_edge.patch
    patch -p1 < ../filespeck.patch
+   patch -p1 < ../bool.patch
    # fix sample configs
    find . -type f -name 'sample*' -exec sed -i 's/-P$PRINTER/-p$PRINTER/' {} \;
    # convert images (and make pics/ build work)
